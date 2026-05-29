@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 
-uv run alembic upgrade head
+uv run --active alembic upgrade head
 
 # Seed only on initial deploy — skipped if books table already has data
-BOOK_COUNT=$(uv run python -c "
+BOOK_COUNT=$(uv run --active python -c "
 from app.database.session import SessionLocal
 from app.modules.books.book_model import Book
 with SessionLocal() as db:
@@ -12,7 +12,7 @@ with SessionLocal() as db:
 ")
 
 if [ "$BOOK_COUNT" = "0" ]; then
-    uv run python scripts/seed.py
+    uv run --active python scripts/seed.py
 else
     echo "Database already seeded — skipping."
 fi
