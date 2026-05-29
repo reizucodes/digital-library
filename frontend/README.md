@@ -1,5 +1,33 @@
-# Vue 3 + TypeScript + Vite
+# Digital Library — Frontend
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Vue 3 + TypeScript + Vite + Pinia + Tailwind CSS.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+---
+
+## Setup
+
+```bash
+npm install
+cp .env.example .env
+npm run dev
+```
+
+App runs at http://localhost:5173. Set `VITE_API_BASE_URL` in `.env` to point at the backend (default: `http://localhost:8000`).
+
+---
+
+## Adding a Book
+
+Click **Add Book** in the book list header, or use the link in the empty state. A modal dialog opens over the list — the background blurs while it is open. After a successful save the modal closes and the list refreshes in place.
+
+The route `/books/create` no longer exists; it redirects to the book list.
+
+---
+
+## Key Components
+
+| Component | Purpose |
+|---|---|
+| `BaseModal.vue` | Generic modal shell — handles backdrop, blur, focus-trap, and close-on-escape |
+| `BookCreateModal.vue` | Add-book form rendered inside `BaseModal` |
+| `BookListView.vue` | Book list page; owns the `showModal` state and passes it to `BookCreateModal` |

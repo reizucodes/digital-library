@@ -97,7 +97,7 @@ async function handleDelete() {
         <button
           type="button"
           :disabled="loading"
-          class="inline-flex items-center rounded-md bg-red-600 dark:bg-red-700 px-3 py-2 text-sm font-medium text-white hover:bg-red-700 dark:hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-50 transition-colors"
+          class="inline-flex items-center rounded-md bg-red-500 dark:bg-red-700 px-3 py-2 text-sm font-medium text-white dark:text-gray-200 hover:bg-red-600 dark:hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-50 transition-colors"
           @click="handleDelete"
         >
           Delete

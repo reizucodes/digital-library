@@ -28,13 +28,6 @@ const { isDark, toggle } = useDarkMode()
             >
               Books
             </RouterLink>
-            <RouterLink
-              :to="{ name: 'books-create' }"
-              class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-              active-class="text-blue-600 dark:text-blue-400"
-            >
-              Add Book
-            </RouterLink>
           </div>
 
           <button

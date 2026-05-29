@@ -12,7 +12,7 @@ const router = createRouter({
       // Must come before /books/:id to prevent "create" being treated as an id
       path: '/books/create',
       name: 'books-create',
-      component: () => import('../views/BookCreateView.vue'),
+      redirect: { name: 'books-list' },
     },
     {
       path: '/books/:id',
