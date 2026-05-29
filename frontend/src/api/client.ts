@@ -1,11 +1,14 @@
 import type { ApiError } from '../types/book'
 
-const BASE_URL = (import.meta.env.VITE_API_BASE_URL as string | undefined) ?? 'http://localhost:8000'
+const BASE_URL = (import.meta.env.VITE_API_BASE_URL as string) ?? ''
 
 export class ApiRequestError extends Error {
-  constructor(public readonly apiError: ApiError) {
+  readonly apiError: ApiError
+
+  constructor(apiError: ApiError) {
     super(apiError.message)
     this.name = 'ApiRequestError'
+    this.apiError = apiError
   }
 }
 

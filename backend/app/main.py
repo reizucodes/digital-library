@@ -48,3 +48,9 @@ app.add_exception_handler(Exception, internal_error_handler)
 
 # Routers
 app.include_router(router)
+
+
+@app.get("/health", tags=["health"])
+def health_check() -> dict:
+    """Render health check endpoint — returns 200 when the service is up."""
+    return {"status": "ok"}

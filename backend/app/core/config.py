@@ -1,7 +1,11 @@
 from __future__ import annotations
 
+import logging
+
 from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+logger = logging.getLogger(__name__)
 
 
 class Settings(BaseSettings):
@@ -23,3 +27,11 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+if not settings.DATABASE_URL.startswith("sqlite") and all(
+    "localhost" in o for o in settings.CORS_ORIGINS
+):
+    logger.warning(
+        "CORS_ORIGINS only contains localhost origins but DATABASE_URL points to a remote database. "
+        "Set CORS_ORIGINS to your production frontend URL (e.g. https://your-app.vercel.app)."
+    )

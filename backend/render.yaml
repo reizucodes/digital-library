@@ -1,0 +1,18 @@
+# Render deployment configuration for the Digital Library FastAPI backend.
+# Docs: https://render.com/docs/render-yaml-spec
+
+services:
+  - type: web
+    name: digital-library-api
+    runtime: python
+    buildCommand: pip install uv && uv sync --no-dev
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+
+    envVars:
+      - key: DATABASE_URL
+        sync: false   # Set this manually in the Render dashboard (Neon connection string)
+      - key: CORS_ORIGINS
+        sync: false   # e.g. https://your-app.vercel.app
+      - key: SECRET_KEY
+        generateValue: true

@@ -11,8 +11,10 @@ from app.database.base import Base
 
 def _make_engine():
     url = settings.DATABASE_URL
-    connect_args = {}
-    if url.startswith("sqlite"):
+    connect_args: dict = {}
+    if url.startswith("postgresql"):
+        connect_args = {"sslmode": "require"}
+    elif url.startswith("sqlite"):
         # Ensure the data directory exists for file-based SQLite
         db_path = url.replace("sqlite:///", "").replace("sqlite://", "")
         if db_path and db_path != ":memory:":
